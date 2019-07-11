@@ -1,3 +1,5 @@
 class Url < ApplicationRecord
-  validates_presence_of :original, :short, :sanitize
+  has_many :hits, dependent: :nullify
+
+  validates_presence_of :original
 end
