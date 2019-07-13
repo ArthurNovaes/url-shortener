@@ -5,4 +5,8 @@ class StatsController < ApplicationController
 
     json_response(url_response(url))
   end
+
+  def index
+    json_response(stats_response)
+  end
 end

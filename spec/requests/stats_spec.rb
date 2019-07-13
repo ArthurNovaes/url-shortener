@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Stats API', type: :request do
-  let!(:urls) { create_list(:url, 10) }
+  let!(:urls) { create_list(:url, 11) }
   let!(:user) { create :user }
   let(:url_01) { urls.first }
 
   let(:hit)    { create :hit, url_id: url_01.id, user_id: user.id }
   let(:hit_02) { create :hit, url_id: url_01.id, user_id: user.id }
+  let(:hit_03) { create :hit, url_id: urls.second.id }
 
   let(:json) { JSON.parse(response.body) }
 
@@ -42,4 +43,24 @@ RSpec.describe 'Stats API', type: :request do
     end
   end
 
+  describe 'GET /stats/' do
+
+    context 'when request is valid' do
+      before do
+        hit
+        hit_02
+        hit_03
+        get '/stats/'
+      end
+
+      it { expect(response).to have_http_status(200) }
+
+      it 'return correct data' do
+        expect(json).to include('hits' => 3)
+                    .and include('urlCount' => 11)
+        expect(json['topUrls'].size).to eq 10
+        expect(json['topUrls'].first['id']).to eq url_01.id
+      end
+    end
+  end
 end
