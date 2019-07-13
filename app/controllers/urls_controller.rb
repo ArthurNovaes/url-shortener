@@ -30,23 +30,6 @@ class UrlsController < ApplicationController
 
   private
 
-  def url_response(url, status)
-    hits = Hit.where(url_id: url.id)&.count
-    host = request.host_with_port
-    result = {
-      id: url.id,
-      hits: hits.to_i,
-      url: url.original,
-      shortUrl: host + '/' + url.short
-    }
-
-    if status == :found
-      result[:message] = 'This url already exists'
-    end
-
-    result
-  end
-
   def user_params
     params.permit(:login)
   end

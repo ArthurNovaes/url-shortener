@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:destroy]
+  before_action :set_user, only: [:destroy, :stats]
 
   def create
     if User.where(login: user_params[:login]).present?
@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     head :no_content
+  end
+
+  def stats
+    json_response(stats_response(@user.id))
   end
 
   private

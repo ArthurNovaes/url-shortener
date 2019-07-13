@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users do
-  end
+  resources :users
 
-  resources :urls do
+  get '/users/:id/stats', to: 'users#stats', as: :stats
 
-  end
+  resources :urls
+
+  resources :stats
 end
