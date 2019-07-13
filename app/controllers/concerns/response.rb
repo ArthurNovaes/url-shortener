@@ -34,7 +34,8 @@ module Response
 
     if user_id.present?
       stats_response[:hits] = Hit.where(user_id: user_id).count.to_i
-      stats_response[:urlCount] = Url.select('urls.id').joins(:hits).where("hits.user_id = #{user_id}").distinct.count
+      stats_response[:urlCount] = Url.select('urls.id')
+                                     .joins(:hits).where("hits.user_id = #{user_id}").distinct.count
     end
 
     stats_response
