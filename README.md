@@ -105,5 +105,5 @@ Add --tag for made run more easier
 ```
 * Run tests
 ```
-    bundle exex rspec
+    bundle exec rspec
 ```
