@@ -1,18 +1,58 @@
 # README
 
-Things you may want to cover:
+## API DOCS
 
-* Database creation
+## Technologies
+* Ruby 2.5.1
+* Rails 5.2.3
+* PostgreSQL 9.4+
+* Node.js 5.x.x+
 
-* Database initialization
+This project can be configured and started on a docker container or directly in your machine.
 
-* Deployment instructions
+## Setup without docker
+
+**1. Environment Dependencies**
+
+- Ruby: we recommend to use some version manager like [RVM](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv) 
+- [Node.js](https://nodejs.org/en/)
+
+**2. Environment Variables**
+
+Create a file named `.env` on the root of the project with the following content and replace with your the database info
+
+```
+DATABASE_HOST='REPLACE'
+DATABASE_USERNAME='REPLACE'
+DATABASE_PASSWORD='REPLACE'
+DATABASE_NAME='REPLACE'
+DATABASE_PORT=5432
+```
+
+**3. Database**
+
+Create a database on **PostgreSQL**, you must add the database variables on .env bellow. After that run:
+
+```
+  rails db:migrate
+```
+
+**4. Bundle**
+
+	bundle install
+	
+## Tests
+Update your test env database:
+	
+	RAILS_ENV=test rails db:drop
+	RAILS_ENV=test rails db:create
+	RAILS_ENV=test rails db:migrate
+	
+And run the tests:
+
+	rspec
 
 ## Docker Installation and enviroment configuration Guide
-
-### Instalation guide for Ubuntu (18.04 ou 16.04)
-
-### Docker instalation
 
 The installation of the docker can be done in several ways. The standart guide for instalation 
 can be found here [LINK](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
@@ -54,27 +94,6 @@ if you want to install everything directly, in path  **script/docker/**, has one
 2. Execute the script: ./install-docker.sh
 ```
 
-### Execute docker without Sudo (optional). 
-
-By default the docker command can only be run by the root user or by a user in the docker group. 
-this [LINK](https://www.digitalocean.com/community/tutorials/como-instalar-e-usar-o-docker-no-ubuntu-18-04-pt#passo-2-%E2%80%94-executando-o-comando-docker-sem-sudo-(opcional)) helps with running docker without sudo.
-
-you can perform the following steps
-
-* sudo usermod -aG docker ${USER}
-* su - ${USER}
-* id -nG
-* sudo usermod -aG docker **user-name**
-
----
-### Additional Information
-
-In some situations, when the project is cloned recently, when trying to make several changes in the container, how to example the execution of **rails db:seed**, an error message appears. **FATAL: Listen error: unable to monitor directories for changes.**
-this error basically consists of number of new files that have been inserted into the system. 
-To carry out the correction it is necessary in your local machine execute the following command.
-```
-echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-```
 ---
 ### Commands for container build, run and access
 
@@ -85,7 +104,7 @@ Add --tag for made run more easier
 ```
 * To start the container, with enviroments variables
 ```
-    sudo docker run -it -p 3000:3000 -e DATABASE_HOST=your_host -e DATABASE_USERNAME=user_database -e DATABASE_PASSWORD=database_password -e DATABASE_NAME=name -e DATABASE_PORT=port_database url-shortener
+    sudo docker run -it -p 3000:3000 -e DATABASE_HOST=REPLACE -e DATABASE_USERNAME=REPLACE -e DATABASE_PASSWORD=REPLACE -e DATABASE_NAME=REPLACE -e DATABASE_PORT=5432 url-shortener
 ```
 * Container access
 ```
