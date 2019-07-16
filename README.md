@@ -125,15 +125,25 @@ DATABASE_PORT=5432
 
 **3. Database**
 
-Create a database on **PostgreSQL**, you must add the database variables on .env bellow. After that run:
+You must add the database variables on .env described above.
+Create a database directly on **PostgreSQL** (with psql) or use:
+```
+  rails db:create // create a default database following .env
+```
+After that run:
 
 ```
-  rails db:migrate
+  rails db:migrate // add tables
 ```
 
 **4. Bundle**
 
 	bundle install
+	
+**5. Run aplication**
+```
+  rails s
+```
 	
 ## Tests
 Update your test env database:
