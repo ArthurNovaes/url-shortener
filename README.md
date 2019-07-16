@@ -194,7 +194,7 @@ if you want to install everything directly, in path  **script/docker/**, has one
 * To build the container
 Add --tag for made run more easier
 ```
-    docker-compose build . --tag url-shortener
+    sudo docker build . --tag url-shortener
 ```
 * To start the container, with enviroments variables
 ```
