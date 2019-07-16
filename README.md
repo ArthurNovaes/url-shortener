@@ -3,6 +3,7 @@
 ## API DOC
 
 **GET /urls/:id**
+
 Should returns a 301 redirect to the original address of the URL.
 Receive a optional existing user login:
 *{"login": "joao"}*
@@ -16,6 +17,7 @@ Location:
 If id does not exist in the system, the return must be a 404 Not Found.
 
 **POST /urls**
+
 Register a new url.
 Params:
 *{"url": "http://www.chaordic.com.br/folks"}*
@@ -31,6 +33,7 @@ The response is a JSON object equal to the call GET /stats/:id with code 201 Cre
 ```
 
 **GET /stats**
+
 Returns general statistics.
 ```
 {
@@ -55,10 +58,13 @@ Returns general statistics.
 ```
 
 **GET /users/:userId/stats**
-Returns statistics of a user's urls. The result is the same as GET */stats* but with the scope within a user.
+
+Returns statistics of a user's urls.
+The result is the same as GET */stats* but with the scope within a user.
 If the user does not exist the return must be code 404 Not Found.
 
 **GET /stats/:id**
+
 Returns statistics for a specific URL
 ```
 {
@@ -70,9 +76,11 @@ Returns statistics for a specific URL
 ```
 
 **DELETE /urls/:id**
+
 Deletes URL.
 
 **POST /users**
+
 Create a user. Receive the login:
 *{"login": "joao"}*
 
@@ -85,6 +93,7 @@ Response:
 ```
 
 **DELETE /user/:userId**
+
 Deletes a user.
 
 ## Technologies
