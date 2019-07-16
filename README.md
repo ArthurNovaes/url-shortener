@@ -1,6 +1,91 @@
 # README
 
-## API DOCS
+## API DOC
+
+**GET /urls/:id**
+Should returns a 301 redirect to the original address of the URL.
+Receive a optional existing user login:
+*{"login": "joao"}*
+If not pass login, the hit will save without user_id.
+
+Response:
+```
+301 Redirect
+Location:
+```
+If id does not exist in the system, the return must be a 404 Not Found.
+
+**POST /urls**
+Register a new url.
+Params:
+*{"url": "http://www.chaordic.com.br/folks"}*
+
+The response is a JSON object equal to the call GET /stats/:id with code 201 Created.
+```
+{
+  "id": "23094",
+  "hits": 0,
+  "url": "http://www.chaordic.com.br/folks",
+  "shortUrl": "http://<host>[:<port>]/asdfeiba"
+}
+```
+
+**GET /stats**
+Returns general statistics.
+```
+{
+  "hits": 193841, // Quantidade de hits em todas as urls do sistema
+  "urlCount": 2512, // Quantidade de urls cadastradas
+  "topUrls": [
+  {
+    "id": "23094",
+    "hits": 153,
+    "url": "http://www.chaordic.com.br/folks",
+    "shortUrl": "http://<host>[:<port>]/asdfeiba"
+  },
+  {
+    "id": "23090",
+    "hits": 89,
+    "url": "http://www.chaordic.com.br/chaordic",
+    "shortUrl": "http://<host>[:<port>]/asdfeiba"
+  },
+// ...
+  ]
+}
+```
+
+**GET /users/:userId/stats**
+Returns statistics of a user's urls. The result is the same as GET */stats* but with the scope within a user.
+If the user does not exist the return must be code 404 Not Found.
+
+**GET /stats/:id**
+Returns statistics for a specific URL
+```
+{
+  "id": "23094",
+  "hits": 0,
+  "url": "http://www.chaordic.com.br/folks",
+  "shortUrl": "http://short.url.com/asdfeiba"
+}
+```
+
+**DELETE /urls/:id**
+Deletes URL.
+
+**POST /users**
+Create a user. Receive the login:
+*{"login": "joao"}*
+
+Response:
+```
+{
+  "id": 1,
+  "login": "joao"
+}
+```
+
+**DELETE /user/:userId**
+Deletes a user.
 
 ## Technologies
 * Ruby 2.5.1
