@@ -20,14 +20,14 @@ If id does not exist in the system, the return must be a 404 Not Found.
 
 Register a new url.
 Params:
-*{"url": "http://www.chaordic.com.br/folks"}*
+*{"url": "http://www.google.com.br/t3st3"}*
 
 The response is a JSON object equal to the call GET /stats/:id with code 201 Created.
 ```
 {
   "id": "23094",
   "hits": 0,
-  "url": "http://www.chaordic.com.br/folks",
+  "url": "http://www.google.com.br/t3st3",
   "shortUrl": "http://<host>[:<port>]/asdfeiba"
 }
 ```
@@ -43,19 +43,19 @@ Returns general statistics.
   {
     "id": "23094",
     "hits": 153,
-    "url": "http://www.chaordic.com.br/folks",
+    "url": "www.google.com.br/t3st3",
     "shortUrl": "http://<host>[:<port>]/asdfeiba"
   },
   {
     "id": "23090",
     "hits": 89,
-    "url": "http://www.chaordic.com.br/chaordic",
+    "url": "www.google.com.br/t3st3",
     "shortUrl": "http://<host>[:<port>]/asdfeiba"
   },
 // ...
   ]
 }
-```
+```www.google.com.br/t3st3
 
 **GET /users/:userId/stats**
 
@@ -70,7 +70,7 @@ Returns statistics for a specific URL
 {
   "id": "23094",
   "hits": 0,
-  "url": "http://www.chaordic.com.br/folks",
+  "url": "http://www.google.com.br/t3st3",
   "shortUrl": "http://short.url.com/asdfeiba"
 }
 ```
