@@ -55,7 +55,7 @@ Returns general statistics.
 // ...
   ]
 }
-```www.google.com.br/t3st3
+```
 
 **GET /users/:userId/stats**
 
